@@ -873,8 +873,6 @@ class _DatabaseAppState extends State<DatabaseApp> {
                           ),
                         ),
                       ),
-
-                      // 여기서 부터 수정해야함.
                       Expanded(
                         flex: 18,
                         child: Container(
@@ -892,9 +890,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(03, 00);
                                         },
                                       ),
                                     ),
@@ -906,9 +904,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(03, 01);
                                         },
                                       ),
                                     ),
@@ -920,9 +918,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(03, 02);
                                         },
                                       ),
                                     ),
@@ -934,9 +932,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(03, 03);
                                         },
                                       ),
                                     ),
@@ -948,9 +946,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(03, 04);
                                         },
                                       ),
                                     ),
@@ -962,9 +960,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(03, 05);
                                         },
                                       ),
                                     ),
@@ -976,9 +974,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(03, 06);
                                         },
                                       ),
                                     ),
@@ -990,9 +988,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(03, 07);
                                         },
                                       ),
                                     ),
@@ -1004,9 +1002,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(03, 08);
                                         },
                                       ),
                                     ),
@@ -1018,9 +1016,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(03, 09);
                                         },
                                       ),
                                     ),
@@ -1032,9 +1030,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(03, 10);
                                         },
                                       ),
                                     ),
@@ -1046,9 +1044,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(03, 11);
                                         },
                                       ),
                                     ),
@@ -1060,9 +1058,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(03, 12);
                                         },
                                       ),
                                     ),
@@ -1074,9 +1072,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(03, 13);
                                         },
                                       ),
                                     ),
@@ -1088,9 +1086,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[03][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(03, 14);
                                         },
                                       ),
                                     ),
@@ -1123,9 +1121,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(04, 00);
                                         },
                                       ),
                                     ),
@@ -1137,9 +1135,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(04, 01);
                                         },
                                       ),
                                     ),
@@ -1151,9 +1149,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(04, 02);
                                         },
                                       ),
                                     ),
@@ -1165,9 +1163,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(04, 03);
                                         },
                                       ),
                                     ),
@@ -1179,9 +1177,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(04, 04);
                                         },
                                       ),
                                     ),
@@ -1193,9 +1191,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(04, 05);
                                         },
                                       ),
                                     ),
@@ -1207,9 +1205,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(04, 06);
                                         },
                                       ),
                                     ),
@@ -1221,9 +1219,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(04, 07);
                                         },
                                       ),
                                     ),
@@ -1235,9 +1233,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(04, 08);
                                         },
                                       ),
                                     ),
@@ -1249,9 +1247,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(04, 09);
                                         },
                                       ),
                                     ),
@@ -1263,9 +1261,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(04, 10);
                                         },
                                       ),
                                     ),
@@ -1277,9 +1275,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(04, 11);
                                         },
                                       ),
                                     ),
@@ -1291,9 +1289,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(04, 12);
                                         },
                                       ),
                                     ),
@@ -1305,9 +1303,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(04, 13);
                                         },
                                       ),
                                     ),
@@ -1319,9 +1317,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[04][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(04, 14);
                                         },
                                       ),
                                     ),
@@ -1337,6 +1335,8 @@ class _DatabaseAppState extends State<DatabaseApp> {
                           ),
                         ),
                       ),
+
+                      // 여기서 5부터 수정해야함.
                       Expanded(
                         flex: 18,
                         child: Container(
