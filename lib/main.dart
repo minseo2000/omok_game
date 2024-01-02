@@ -91,6 +91,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
   }
 
+  String v_youStone = 'n';
+  String v_aiStone = 'n';
+
   @override
   void dispose(){
     _player.stop();
@@ -1335,8 +1338,6 @@ class _DatabaseAppState extends State<DatabaseApp> {
                           ),
                         ),
                       ),
-
-                      // 여기서 5부터 수정해야함.
                       Expanded(
                         flex: 18,
                         child: Container(
@@ -1354,9 +1355,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(05, 00);
                                         },
                                       ),
                                     ),
@@ -1368,9 +1369,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(05, 01);
                                         },
                                       ),
                                     ),
@@ -1382,9 +1383,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(05, 02);
                                         },
                                       ),
                                     ),
@@ -1396,9 +1397,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(05, 03);
                                         },
                                       ),
                                     ),
@@ -1410,9 +1411,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(05, 04);
                                         },
                                       ),
                                     ),
@@ -1424,9 +1425,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(05, 05);
                                         },
                                       ),
                                     ),
@@ -1438,9 +1439,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(05, 06);
                                         },
                                       ),
                                     ),
@@ -1452,9 +1453,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(05, 07);
                                         },
                                       ),
                                     ),
@@ -1466,9 +1467,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(05, 08);
                                         },
                                       ),
                                     ),
@@ -1480,9 +1481,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(05, 09);
                                         },
                                       ),
                                     ),
@@ -1494,9 +1495,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(05, 10);
                                         },
                                       ),
                                     ),
@@ -1508,9 +1509,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(05, 11);
                                         },
                                       ),
                                     ),
@@ -1522,9 +1523,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(05, 12);
                                         },
                                       ),
                                     ),
@@ -1536,9 +1537,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(05, 13);
                                         },
                                       ),
                                     ),
@@ -1550,9 +1551,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[05][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(05, 14);
                                         },
                                       ),
                                     ),
@@ -1585,9 +1586,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(06, 00);
                                         },
                                       ),
                                     ),
@@ -1599,9 +1600,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(06, 01);
                                         },
                                       ),
                                     ),
@@ -1613,9 +1614,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(06, 02);
                                         },
                                       ),
                                     ),
@@ -1627,9 +1628,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(06, 03);
                                         },
                                       ),
                                     ),
@@ -1641,9 +1642,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(06, 04);
                                         },
                                       ),
                                     ),
@@ -1655,9 +1656,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(06, 05);
                                         },
                                       ),
                                     ),
@@ -1669,9 +1670,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(06, 06);
                                         },
                                       ),
                                     ),
@@ -1683,9 +1684,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(06, 07);
                                         },
                                       ),
                                     ),
@@ -1697,9 +1698,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(06, 08);
                                         },
                                       ),
                                     ),
@@ -1711,9 +1712,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(06, 09);
                                         },
                                       ),
                                     ),
@@ -1725,9 +1726,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(06, 10);
                                         },
                                       ),
                                     ),
@@ -1739,9 +1740,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(06, 11);
                                         },
                                       ),
                                     ),
@@ -1753,9 +1754,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(06, 12);
                                         },
                                       ),
                                     ),
@@ -1767,9 +1768,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(06, 13);
                                         },
                                       ),
                                     ),
@@ -1781,240 +1782,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[06][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 18,
-                        child: Container(
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                // 버튼 !
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 00);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 01);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 02);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 03);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 04);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 05);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 06);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 07);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 08);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 09);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 10);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 11);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 12);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 13);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(06, 14);
                                         },
                                       ),
                                     ),
@@ -2047,9 +1817,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(07, 00);
                                         },
                                       ),
                                     ),
@@ -2061,9 +1831,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(07, 01);
                                         },
                                       ),
                                     ),
@@ -2075,9 +1845,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(07, 02);
                                         },
                                       ),
                                     ),
@@ -2089,9 +1859,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(07, 03);
                                         },
                                       ),
                                     ),
@@ -2103,9 +1873,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(07, 04);
                                         },
                                       ),
                                     ),
@@ -2117,9 +1887,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(07, 05);
                                         },
                                       ),
                                     ),
@@ -2131,9 +1901,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(07, 06);
                                         },
                                       ),
                                     ),
@@ -2145,9 +1915,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(07, 07);
                                         },
                                       ),
                                     ),
@@ -2159,9 +1929,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(07, 08);
                                         },
                                       ),
                                     ),
@@ -2173,9 +1943,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(07, 09);
                                         },
                                       ),
                                     ),
@@ -2187,9 +1957,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(07, 10);
                                         },
                                       ),
                                     ),
@@ -2201,9 +1971,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(07, 11);
                                         },
                                       ),
                                     ),
@@ -2215,9 +1985,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(07, 12);
                                         },
                                       ),
                                     ),
@@ -2229,9 +1999,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(07, 13);
                                         },
                                       ),
                                     ),
@@ -2243,240 +2013,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[07][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 18,
-                        child: Container(
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                // 버튼 !
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 00);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 01);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 02);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 03);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 04);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 05);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 06);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 07);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 08);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 09);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 10);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 11);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 12);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 13);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(07, 14);
                                         },
                                       ),
                                     ),
@@ -2509,9 +2048,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(08, 00);
                                         },
                                       ),
                                     ),
@@ -2523,9 +2062,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(08, 01);
                                         },
                                       ),
                                     ),
@@ -2537,9 +2076,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(08, 02);
                                         },
                                       ),
                                     ),
@@ -2551,9 +2090,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(08, 03);
                                         },
                                       ),
                                     ),
@@ -2565,9 +2104,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(08, 04);
                                         },
                                       ),
                                     ),
@@ -2579,9 +2118,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(08, 05);
                                         },
                                       ),
                                     ),
@@ -2593,9 +2132,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(08, 06);
                                         },
                                       ),
                                     ),
@@ -2607,9 +2146,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(08, 07);
                                         },
                                       ),
                                     ),
@@ -2621,9 +2160,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(08, 08);
                                         },
                                       ),
                                     ),
@@ -2635,9 +2174,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(08, 09);
                                         },
                                       ),
                                     ),
@@ -2649,9 +2188,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(08, 10);
                                         },
                                       ),
                                     ),
@@ -2663,9 +2202,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(08, 11);
                                         },
                                       ),
                                     ),
@@ -2677,9 +2216,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(08, 12);
                                         },
                                       ),
                                     ),
@@ -2691,9 +2230,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(08, 13);
                                         },
                                       ),
                                     ),
@@ -2705,240 +2244,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[08][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 18,
-                        child: Container(
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                // 버튼 !
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 00);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 01);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 02);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 03);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 04);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 05);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 06);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 07);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 08);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 09);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 10);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 11);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 12);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 13);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(08, 14);
                                         },
                                       ),
                                     ),
@@ -2971,9 +2279,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(09, 00);
                                         },
                                       ),
                                     ),
@@ -2985,9 +2293,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(09, 01);
                                         },
                                       ),
                                     ),
@@ -2999,9 +2307,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(09, 02);
                                         },
                                       ),
                                     ),
@@ -3013,9 +2321,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(09, 03);
                                         },
                                       ),
                                     ),
@@ -3027,9 +2335,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(09, 04);
                                         },
                                       ),
                                     ),
@@ -3041,9 +2349,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(09, 05);
                                         },
                                       ),
                                     ),
@@ -3055,9 +2363,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(09, 06);
                                         },
                                       ),
                                     ),
@@ -3069,9 +2377,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(09, 07);
                                         },
                                       ),
                                     ),
@@ -3083,9 +2391,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(09, 08);
                                         },
                                       ),
                                     ),
@@ -3097,9 +2405,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(09, 09);
                                         },
                                       ),
                                     ),
@@ -3111,9 +2419,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(09, 10);
                                         },
                                       ),
                                     ),
@@ -3125,9 +2433,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(09, 11);
                                         },
                                       ),
                                     ),
@@ -3139,9 +2447,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(09, 12);
                                         },
                                       ),
                                     ),
@@ -3153,9 +2461,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(09, 13);
                                         },
                                       ),
                                     ),
@@ -3167,240 +2475,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[09][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 18,
-                        child: Container(
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                // 버튼 !
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 00);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 01);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 02);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 03);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 04);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 05);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 06);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 07);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 08);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 09);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 10);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 11);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 12);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 13);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 9,
-                                  child: Container(
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
-                                        onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(09, 14);
                                         },
                                       ),
                                     ),
@@ -3433,9 +2510,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][00], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][00], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 00);
+                                          step_downStone(10, 00);
                                         },
                                       ),
                                     ),
@@ -3447,9 +2524,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][01], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][01], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 01);
+                                          step_downStone(10, 01);
                                         },
                                       ),
                                     ),
@@ -3461,9 +2538,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][02], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][02], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 02);
+                                          step_downStone(10, 02);
                                         },
                                       ),
                                     ),
@@ -3475,9 +2552,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][03], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][03], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 03);
+                                          step_downStone(10, 03);
                                         },
                                       ),
                                     ),
@@ -3489,9 +2566,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][04], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][04], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 04);
+                                          step_downStone(10, 04);
                                         },
                                       ),
                                     ),
@@ -3503,9 +2580,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][05], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][05], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 05);
+                                          step_downStone(10, 05);
                                         },
                                       ),
                                     ),
@@ -3517,9 +2594,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][06], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][06], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 06);
+                                          step_downStone(10, 06);
                                         },
                                       ),
                                     ),
@@ -3531,9 +2608,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][07], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][07], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 07);
+                                          step_downStone(10, 07);
                                         },
                                       ),
                                     ),
@@ -3545,9 +2622,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][08], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][08], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 08);
+                                          step_downStone(10, 08);
                                         },
                                       ),
                                     ),
@@ -3559,9 +2636,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][09], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][09], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 09);
+                                          step_downStone(10, 09);
                                         },
                                       ),
                                     ),
@@ -3573,9 +2650,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][10], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][10], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 10);
+                                          step_downStone(10, 10);
                                         },
                                       ),
                                     ),
@@ -3587,9 +2664,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][11], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][11], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 11);
+                                          step_downStone(10, 11);
                                         },
                                       ),
                                     ),
@@ -3601,9 +2678,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][12], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][12], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 12);
+                                          step_downStone(10, 12);
                                         },
                                       ),
                                     ),
@@ -3615,9 +2692,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][13], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][13], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 13);
+                                          step_downStone(10, 13);
                                         },
                                       ),
                                     ),
@@ -3629,9 +2706,933 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                     child: Container(
                                       alignment: Alignment.center,
                                       child: TextButton(
-                                        child: Text(v_listBox_count[00][14], style: TextStyle(fontSize: 12),),
+                                        child: Text(v_listBox_count[10][14], style: TextStyle(fontSize: 12),),
                                         onPressed: (){
-                                          step_downStone(00, 14);
+                                          step_downStone(10, 14);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 18,
+                        child: Container(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                // 버튼 !
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][00], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 00);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][01], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 01);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][02], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 02);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][03], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 03);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][04], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 04);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][05], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 05);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][06], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 06);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][07], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 07);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][08], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 08);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][09], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 09);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][10], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 10);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][11], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 11);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][12], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 12);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][13], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 13);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[11][14], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(11, 14);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 18,
+                        child: Container(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                // 버튼 !
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][00], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 00);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][01], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 01);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][02], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 02);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][03], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 03);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][04], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 04);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][05], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 05);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][06], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 06);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][07], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 07);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][08], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 08);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][09], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 09);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][10], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 10);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][11], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 11);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][12], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 12);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][13], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 13);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[12][14], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(12, 14);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 18,
+                        child: Container(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                // 버튼 !
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][00], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 00);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][01], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 01);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][02], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 02);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][03], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 03);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][04], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 04);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][05], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 05);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][06], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 06);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][07], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 07);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][08], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 08);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][09], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 09);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][10], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 10);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][11], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 11);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][12], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 12);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][13], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 13);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[13][14], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(13, 14);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 18,
+                        child: Container(
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                // 버튼 !
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][00], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 00);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][01], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 01);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][02], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 02);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][03], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 03);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][04], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 04);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][05], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 05);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][06], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 06);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][07], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 07);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][08], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 08);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][09], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 09);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][10], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 10);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][11], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 11);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][12], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 12);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][13], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 13);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 9,
+                                  child: Container(
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      child: TextButton(
+                                        child: Text(v_listBox_count[14][14], style: TextStyle(fontSize: 12),),
+                                        onPressed: (){
+                                          step_downStone(14, 14);
                                         },
                                       ),
                                     ),
