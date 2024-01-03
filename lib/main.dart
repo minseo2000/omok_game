@@ -146,6 +146,503 @@ class _DatabaseAppState extends State<DatabaseApp> {
     if(v_x_AI != 15) return;
   }
 
+  void step_downStone_AI4(){
+    step_downStone_AI4_row();
+    if(v_x_AI != 15) return;
+    step_downStone_AI4_col();
+    if(v_x_AI != 15) return;
+    step_downStone_AI4_grd1();
+    if(v_x_AI != 15) return;
+    step_downStone_AI4_grd2();
+    if(v_x_AI != 15) return;
+  }
+
+  void step_downStone_AI4_row(){
+    for(i = 0;i<v_rowBox ;i++){
+      for(j=0;j<=v_colBox ;j++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+        for (jj=0;jj<5;jj++){
+          if(v_listBox[i][j+jj] == v_youStone) break;
+          if(v_listBox[i][j+jj] =='n'){
+            _v_count_n++;
+            _v_x_AI = i;
+            _v_y_AI = j +jj;
+
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+  void step_downStone_AI4_col(){
+    for(j=0;j<v_colBox;j++){
+      for(i=0;i<=v_rowBox;i++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for(ii=0;ii<5;ii++){
+          if(v_listBox[i+ii][j] == v_youStone) break;
+          if(v_listBox[i+ii][j] == 'n'){
+            _v_count_n++;
+            _v_x_AI = i +ii;
+            _v_y_AI = j;
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+  void step_downStone_AI4_grd1(){
+    for(i=0;i<=v_rowBox;i++){
+      for(j=0;j<=v_colBox;j++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+        for(jj=0;jj<5;jj++){
+          if(v_listBox[i+jj][j+jj] == v_youStone) break;
+          if(v_listBox[i+jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI = i +jj;
+            _v_y_AI = j+jj;
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+  void step_downStone_AI4_grd2(){
+    for(i=4;i<=v_rowBox;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+        for(jj=0;jj<5;jj++){
+          if(v_listBox[i-jj][j+jj] == v_youStone) break;
+          if(v_listBox[i-jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI = i -jj;
+            _v_y_AI = j+jj;
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+
+  void step_downStone_AI3(){
+    step_downStone_AI3_row();
+    if(v_x_AI != 15) return;
+    step_downStone_AI3_col();
+    if(v_x_AI != 15) return;
+    step_downStone_AI3_grd1();
+    if(v_x_AI != 15) return;
+    step_downStone_AI3_grd2();
+    if(v_x_AI != 15) return;
+  }
+
+  void step_downStone_AI3_row(){
+    for(i = 0;i<v_rowBox ;i++){
+      for(j=0;j<=v_colBox-4 ;j++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+        for (jj=0;jj<4;jj++){
+          if(v_listBox[i][j+jj] == v_youStone) break;
+          if(v_listBox[i][j+jj] =='n'){
+            _v_count_n++;
+            _v_x_AI = i;
+            _v_y_AI = j +jj;
+
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+  void step_downStone_AI3_col(){
+    for(j=0;j<v_colBox;j++){
+      for(i=0;i<=v_rowBox-4;i++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for(ii=0;ii<4;ii++){
+          if(v_listBox[i+ii][j] == v_youStone) break;
+          if(v_listBox[i+ii][j] == 'n'){
+            _v_count_n++;
+            _v_x_AI = i +ii;
+            _v_y_AI = j;
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+  void step_downStone_AI3_grd1(){
+    for(i=0;i<=v_rowBox-4;i++){
+      for(j=0;j<=v_colBox-4;j++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+        for(jj=0;jj<4;jj++){
+          if(v_listBox[i+jj][j+jj] == v_youStone) break;
+          if(v_listBox[i+jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI = i +jj;
+            _v_y_AI = j+jj;
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+  void step_downStone_AI3_grd2(){
+    for(i=3;i<=v_rowBox;i++){
+      for(j=0;j<=v_colBox-4;j++){
+        int _v_count_n = 0;
+        int _v_count_AI = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+        for(jj=0;jj<4;jj++){
+          if(v_listBox[i-jj][j+jj] == v_youStone) break;
+          if(v_listBox[i-jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI = i -jj;
+            _v_y_AI = j+jj;
+          }else{
+            _v_count_AI++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_AI == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+    }
+  }
+
+
+
+  void step_downStone_YOU4(){
+    step_downStone_YOU4_row();
+    if(v_x_AI != 15) return;
+    step_downStone_YOU4_col();
+    if(v_x_AI != 15) return;
+    step_downStone_YOU4_grd1();
+    if(v_x_AI != 15) return;
+    step_downStone_YOU4_grd2();
+    if(v_x_AI != 15) return;
+  }
+
+  void step_downStone_YOU4_row(){
+    for(i=0;i< v_rowBox;i++){
+      for(j=0;j<v_colBox;j++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (jj=0;jj<5;jj++){
+          if(v_listBox[i][j+jj] == v_aiStone) break;
+          if(v_listBox[i][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i;
+            _v_y_AI = j + jj;
+          }else{
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+  void step_downStone_YOU4_col(){
+    for(j=0;j< v_rowBox;j++){
+      for(i=0;i<=v_colBox;i++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (ii=0;ii<5; ii++){
+          if(v_listBox[i+ii][j] == v_aiStone) break;
+          if(v_listBox[i+ii][j] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i+ii;
+            _v_y_AI = j;
+          }else{
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+  void step_downStone_YOU4_grd1(){
+    for(i=0;i<= v_rowBox-5;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (jj=0;jj<5;jj++){
+          if(v_listBox[i+jj][j+jj] == v_aiStone) break;
+          if(v_listBox[i+jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i+jj;
+            _v_y_AI = j + jj;
+          }else{
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+  void step_downStone_YOU4_grd2(){
+    for(i=4;i< v_rowBox;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (jj=0;jj<5;jj++){
+          if(v_listBox[i-jj][j+jj] == v_aiStone) break;
+          if(v_listBox[i-jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i-jj;
+            _v_y_AI = j + jj;
+          }else{
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 4){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+
+
+  void step_downStone_YOU3(){
+    step_downStone_YOU3_row();
+    if(v_x_AI != 15) return;
+    step_downStone_YOU3_col();
+    if(v_x_AI != 15) return;
+    step_downStone_YOU3_grd1();
+    if(v_x_AI != 15) return;
+    step_downStone_YOU3_grd2();
+    if(v_x_AI != 15) return;
+  }
+
+  void step_downStone_YOU3_row(){
+    for(i=0;i< v_rowBox;i++){
+      for(j=1;j<=v_colBox-5;j++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (jj=0;jj<4;jj++){
+          if(v_listBox[i][j+jj] == v_aiStone) break;
+          if(v_listBox[i][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i;
+            _v_y_AI = j + jj;
+          }else{
+            if(jj==0&& v_listBox[i][j-1] == v_aiStone) break;
+            if(jj==3 && v_listBox[i][j+jj+1] == v_aiStone) break;
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+  void step_downStone_YOU3_col(){
+    for(j=0;j< v_colBox;j++){
+      for(i=1;i<=v_rowBox-5;i++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (ii=0;ii<4; ii++){
+          if(v_listBox[i+ii][j] == v_aiStone) break;
+          if(v_listBox[i+ii][j] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i+ii;
+            _v_y_AI = j;
+          }else{
+            if(ii==0 && v_listBox[i-1][j] == v_aiStone) break;
+            if(ii==3 && v_listBox[i+ii+1] == v_aiStone) break;
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+  void step_downStone_YOU3_grd1(){
+    for(i=0;i<= v_rowBox-5;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (jj=0;jj<4;jj++){
+          if(v_listBox[i+jj][j+jj] == v_aiStone) break;
+          if(v_listBox[i+jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i+jj;
+            _v_y_AI = j + jj;
+          }else{
+            if(jj==0 && v_listBox[i-1][j-1] == v_aiStone) break;
+            if(jj==3 && v_listBox[i+jj+1][j+jj+1] == v_aiStone) break;
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+  void step_downStone_YOU3_grd2(){
+    for(i=4;i< v_rowBox-1;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count_n = 0;
+        int _v_count_YOU = 0;
+        int _v_x_AI = 0;
+        int _v_y_AI = 0;
+
+        for (jj=0;jj<4;jj++){
+          if(v_listBox[i-jj][j+jj] == v_aiStone) break;
+          if(v_listBox[i-jj][j+jj] == 'n'){
+            _v_count_n++;
+            _v_x_AI=i-jj;
+            _v_y_AI = j + jj;
+          }else{
+            if(jj==0 && v_listBox[i+1][j-1] == v_aiStone) break;
+            if(jj==3 && v_listBox[i-jj-1][j+jj+1] == v_aiStone) break;
+            _v_count_YOU++;
+          }
+        }
+        if(_v_count_n == 1 && _v_count_YOU == 3){
+          v_x_AI = _v_x_AI;
+          v_y_AI = _v_y_AI;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+    }
+  }
+
+
+
   void step_downStone_5downCount(){
     if(v_y_previous < 4 || v_y_previous > 10 || v_x_previous < 4 || v_x_previous > 10){
       if(v_listBox[7][7] == 'n'){
@@ -173,7 +670,107 @@ class _DatabaseAppState extends State<DatabaseApp> {
         return;
       }
 
-      //p109
+      if(v_x_previous == 7){
+        if(v_y_previous < 8 && v_listBox[v_x_previous][v_y_previous+1] == 'n'){
+          v_x_AI = v_x_previous;
+          v_y_AI = v_y_previous-1;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+        if (v_y_previous > 7 && v_listBox[v_x_previous][v_y_previous-1] == 'n'){
+          v_x_AI = v_x_previous;
+          v_y_AI = v_y_previous+1;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+
+      }
+      if(v_y_previous == 7){
+        if(v_x_previous <8 && v_listBox[v_x_previous+1][v_y_previous] == 'n'){
+          v_x_AI = v_x_previous-1;
+          v_y_AI = v_y_previous;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+        if(v_x_previous > 7 && v_listBox[v_x_previous -1][v_y_previous] == 'n'){
+          v_x_AI = v_x_previous +1;
+          v_y_AI = v_y_previous;
+          v_listBox[v_x_AI][v_y_AI] = v_down;
+          return;
+        }
+      }
+      if(v_y_previous < 8 && v_x_previous < 8 && v_listBox[v_x_previous-1][v_y_previous-1] == 'n'){
+        v_x_AI = v_x_previous - 1;
+        v_y_AI = v_y_previous - 1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_y_previous < 8 && v_x_previous > 7 && v_listBox[v_x_previous+1][v_y_previous-1] == 'n'){
+        v_x_AI = v_x_previous +1;
+        v_y_AI = v_y_previous -1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_y_previous > 7 && v_x_previous < 8 && v_listBox[v_x_previous - 1][v_y_previous +1] == 'n'){
+        v_x_AI = v_x_previous -1;
+        v_y_AI = v_y_previous +1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_y_previous > 7 && v_x_previous > 7 && v_listBox[v_x_previous+1][v_y_previous+1]=='n'){
+        v_x_AI = v_x_previous +1;
+        v_y_AI = v_y_previous + 1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous-0][v_y_previous+1] =='n'){
+        v_x_AI = v_x_previous -0;
+        v_y_AI = v_y_previous +1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous+1][v_y_previous+1] == 'n'){
+        v_x_AI = v_x_previous +1;
+        v_y_AI = v_y_previous +1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous+1][v_y_previous+0] == 'n'){
+        v_x_AI = v_x_previous+1;
+        v_y_AI = v_y_previous +0;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous+1][v_y_previous-1] =='n'){
+        v_x_AI = v_x_previous+1;
+        v_y_AI = v_y_previous-1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous+0][v_y_previous-1] == 'n'){
+        v_x_AI = v_x_previous+0;
+        v_y_AI = v_y_previous-1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous-1][v_y_previous-1] == 'n'){
+        v_x_AI = v_x_previous-1;
+        v_y_AI = v_y_previous-1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous-1][v_y_previous-0] == 'n'){
+        v_x_AI = v_x_previous-1;
+        v_y_AI = v_y_previous -0;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[v_x_previous-1][v_y_previous-1] == 'n'){
+        v_x_AI = v_x_previous-1;
+        v_y_AI = v_y_previous-1;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
     }
   }
 
@@ -189,6 +786,35 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
     });
   }
+
+  void step_downStone_attack(){
+    v_scoreTop = 0;
+
+    for(i =0;i<v_rowBox;i++){
+      for(j=0;j<v_colBox;j++){
+        if(v_listBox[i][j] == 'n'){
+          v_scoreRow = 0;
+          v_scoreCol = 0;
+          v_scoreGrd1 = 0;
+          v_scoreGrd2 = 0;
+          step_downStone_attack_row(i, j);
+          step_downStone_attack_col(i, j);
+          step_downStone_attack_grd1(i, j);
+          step_downStone_attack_grd2(i, j);
+
+          if(v_scoreTop < v_scoreRow + v_scoreCol + v_scoreGrd1 + v_scoreGrd2){
+            v_scoreTop = v_scoreRow + v_scoreCol + v_scoreGrd1 + v_scoreGrd2;
+            v_x_AI = i;
+            v_y_AI = j;
+          }
+        }
+      }
+    }
+    v_listBox[v_x_AI][v_y_AI] = v_down;
+    return;
+  }
+  //p130
+
 
   void press_play(){
     v_flagButtonPlay = false;
@@ -213,6 +839,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
   late int i;
   late int j;
+  late int ii;
+  late int jj;
+
   int v_rowBox = 15;
   int v_colBox = 15;
   int v_x_count = 0;
@@ -223,6 +852,16 @@ class _DatabaseAppState extends State<DatabaseApp> {
   int v_y_previous = 15;
   int v_x_AI = 15;
   int v_y_AI = 15;
+
+  int v_count = 5;
+
+  int v_scoreTop = 0;
+  int v_scoreRow = 0;
+  int v_scoreCol = 0;
+  int v_scoreGrd1 = 0;
+  int v_scoreGrd2 = 0;
+
+
 
 
   String v_youStone = 'n';
