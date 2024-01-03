@@ -71,12 +71,13 @@ flutter:
   assets:
     - assets/images/lock.png
     - assets/images/download.png
-    - assets/images/black.png
+    - assets/images/b.png
+    - assets/images/n.png
     - assets/images/omok_bg.png
     - assets/images/playstore.png
     - assets/images/volume_off.png
     - assets/images/volume_on.png
-    - assets/images/white.png
+    - assets/images/w.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

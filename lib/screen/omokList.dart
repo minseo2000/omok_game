@@ -16,7 +16,14 @@ class _OmokListState extends State<OmokList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('냥목')
+      ),
       body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: const Icon(Icons.remove),
+      ),
     );
   }
 }

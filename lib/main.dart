@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:omok/screen/omokList.dart';
@@ -88,17 +90,161 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
   //게임판을 누르면 바둑판에 돌을 넣기
   void step_downStone(x, y){
+    print('zmf');
+    if(v_flagButtonPlay == true) return;
+    if(v_listBox[x][y] == 'n'){
+      v_listBox[x][y] = v_down;
+      v_downCount++;
+      v_listBox_count[x][y] = 'O';
+      v_listBox_count[v_x_count][v_y_count] = '';
+      v_x_count = x;
+      v_y_count = y;
+      setState(() {
 
+      });
+    }else{
+      return;
+    }
+    (v_down == 'b') ? v_down = 'w' : v_down = 'b';
+    v_x_previous = x;
+    v_y_previous = y;
+    v_x_AI = 15;
+    v_y_AI = 15;
+
+    Timer(Duration(seconds: 1), (){
+      step_downStone_AI();
+      v_downCount++;
+      v_listBox_count[v_x_AI][v_y_AI] = 'O';
+      v_listBox_count[v_x_count][v_y_count] = '';
+      v_x_count = v_x_AI;
+      v_y_count = v_y_AI;
+      setState(() {
+
+      });
+      (v_down == 'b') ? v_down = 'w' : v_down = 'b';
+    });
   }
+
+  void step_downStone_AI(){
+    if(v_downCount < 5){
+      step_downStone_5downCount();
+      if(v_x_AI != 15) return;
+    }
+    //step_downStone_AI4();
+    if(v_x_AI != 15) return;
+
+    //step_downStone_YOU4();
+    if(v_x_AI != 15) return;
+
+    //step_downStone_AI3();
+    if(v_x_AI != 15) return;
+
+    //step_downStone_YOU3();
+    if(v_x_AI != 15) return;
+
+    //step_downStone_attack();
+    if(v_x_AI != 15) return;
+  }
+
+  void step_downStone_5downCount(){
+    if(v_y_previous < 4 || v_y_previous > 10 || v_x_previous < 4 || v_x_previous > 10){
+      if(v_listBox[7][7] == 'n'){
+        v_x_AI = 7;
+        v_y_AI = 7;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[6][7] == 'n'){
+        v_x_AI = 6;
+        v_y_AI = 7;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[7][6] =='n'){
+        v_x_AI = 7;
+        v_y_AI = 6;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+      if(v_listBox[8][8] == 'n'){
+        v_x_AI = 8;
+        v_y_AI = 8;
+        v_listBox[v_x_AI][v_y_AI] = v_down;
+        return;
+      }
+
+      //p109
+    }
+  }
+
+  void step_initial(){
+    v_downCount = 0;
+    for( i = 0; i< v_rowBox; i++){
+      for(j = 0; j< v_colBox; j++){
+        v_listBox[i][j] = 'n';
+        v_listBox_count[i][j] = '';
+      }
+    }
+    setState(() {
+
+    });
+  }
+
+  void press_play(){
+    v_flagButtonPlay = false;
+
+    if(v_youStone == 'w'){
+      v_listBox[7][7] = 'b';
+      v_aiStone = 'b';
+      v_downCount++;
+      v_x_count = 7;
+      v_y_count = 7;
+      v_down = 'w';
+
+    }else{
+      v_down = 'b';
+      v_aiStone = 'w';
+    }
+    setState(() {
+
+    });
+  }
+
+
+  late int i;
+  late int j;
+  int v_rowBox = 15;
+  int v_colBox = 15;
+  int v_x_count = 0;
+  int v_y_count = 0;
+  String v_down = 'n';
+
+  int v_x_previous = 15;
+  int v_y_previous = 15;
+  int v_x_AI = 15;
+  int v_y_AI = 15;
+
 
   String v_youStone = 'n';
   String v_aiStone = 'n';
+  int v_downCount = 0;
+
+  int v_win = 0;
+  int v_tie = 0;
+  int v_defeat = 0;
+  int v_score = 0;
 
   @override
   void dispose(){
     _player.stop();
     _player.dispose();
   }
+  @override
+  void initState(){
+    super.initState();
+    step_initial();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -173,6 +319,886 @@ class _DatabaseAppState extends State<DatabaseApp> {
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
+                //바둑판 배경이미지
+                Container(
+                  width: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
+                  height: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
+                  color: Colors.yellow,
+                  child: Image.asset('assets/images/omok_bg.png', fit: BoxFit.contain,),
+                ),
+                //15 *15 바둑돌 이미지
+                Container(
+                    width: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
+                    height: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[0][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[1][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[2][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[3][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ), // 3
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[4][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[5][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[6][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[7][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[8][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[9][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[10][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[11][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[12][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[13][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 9,
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(flex: 1, child: Container(),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][00]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][01]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][02]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][03]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][04]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][05]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][06]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][07]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][08]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][09]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][10]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][11]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][12]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][13]}.png'),
+                                ),),
+                                Expanded(flex: 9, child: Container(
+                                  child: Image.asset('assets/images/${v_listBox[14][14]}.png'),
+                                ),),
+
+                                Expanded(flex: 1,child: Container(),)
+                              ],
+                            ),
+                          ),
+                        ),
+
+                        Expanded(
+                          flex: 1,
+                          child: Container(),
+                        ),
+                      ],
+                    )
+                ),
                 // 15 * 15 버튼
                 Container(
                   width: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
@@ -3657,886 +4683,6 @@ class _DatabaseAppState extends State<DatabaseApp> {
                     ],
                   ),
                 ),
-                //바둑판 배경이미지
-                Container(
-                  width: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
-                  height: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
-                  color: Colors.yellow,
-                  child: Image.asset('assets/images/omok_bg.png', fit: BoxFit.contain,),
-                ),
-                //15 *15 바둑돌 이미지
-                Container(
-                    width: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
-                    height: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[0][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[1][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[2][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[3][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ), // 3
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[4][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[5][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[6][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[7][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[8][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[9][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[10][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[11][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[12][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[13][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 9,
-                          child: Container(
-                            child: Row(
-                              children: [
-                                Expanded(flex: 1, child: Container(),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][00]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][01]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][02]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][03]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][04]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][05]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][06]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][07]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][08]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][09]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][10]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][11]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][12]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][13]}.png'),
-                                ),),
-                                Expanded(flex: 9, child: Container(
-                                  child: Image.asset('assets/images/${v_listBox[14][14]}.png'),
-                                ),),
-
-                                Expanded(flex: 1,child: Container(),)
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        Expanded(
-                          flex: 1,
-                          child: Container(),
-                        ),
-                      ],
-                    )
-                ),
               ],
             ),
             Expanded(
@@ -4557,24 +4703,121 @@ class _DatabaseAppState extends State<DatabaseApp> {
                               flex: 1,
                               child: Container(
                                 color: Colors.red,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.pink,
+                                child: Column(
+                                    children:[
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              child: Text(
+                                                'You',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16
+                                                ),
+                                              ),
+                                          )
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                            color: Colors.pink,
+                                            child: Container(
+                                                margin : EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                                alignment: Alignment.center,
+                                                child: Image.asset(
+                                                    'assets/images/${v_youStone}.png'
+                                                )
+                                            )
+                                        ),
+                                      ),
+                                    ]
+                                )
                               ),
                             ),
                             Expanded(
                               flex: 1,
                               child: Container(
                                 color: Colors.yellow,
+                                margin : EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child : TextButton(
+                                      child: Text('게임\n시작', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                                      style: TextButton.styleFrom(
+                                          minimumSize : Size.infinite,
+                                          foregroundColor: Colors.black, backgroundColor: Colors.blue
+                                      ),
+                                  onPressed: ()async{
+                                        if(v_flagButtonPlay == true){
+                                          step_initial();
+                                          (v_youStone == 'b') ? v_youStone = 'w' : v_youStone = 'b';
+                                          await showDialog(context: context, builder: (context) {
+                                            return AlertDialog(
+                                              title: Text(style: TextStyle(color: Colors.pink, fontSize:  15), 'Alert'),
+                                              content: Text(v_youStone == 'w' ? '게이머는 백으로 후수입니다.' : '게이머는 흑으로 선공합니다.'),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  onPressed: (){Navigator.of(context).pop();},
+                                                  child: const Text('확인')
+                                                )
+                                              ],
+                                            );
+                                          });
+                                          if(v_flagButtonPlay == true) {press_play();}
+
+                                        }else{
+                                          EasyLoading.instance.fontSize = 16;
+                                          EasyLoading.instance.displayDuration = const Duration(milliseconds:  500);
+                                          EasyLoading.showToast(' 아직 실행되지 않았다냥!');
+                                        }
+                                  },
+
+                                  )
                               ),
                             ),
                             Expanded(
                               flex: 1,
                               child: Container(
                                 color: Colors.green,
+                                child: TextButton(
+                                  child: Text('기권', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                                  style: TextButton.styleFrom(
+                                      minimumSize : Size.infinite,
+                                      foregroundColor: Colors.black, backgroundColor: Colors.blue
+                                  ),
+                                  onPressed: (){},
+                                )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                color: Colors.blue,
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        color: Colors.deepOrangeAccent,
+                                        alignment : Alignment.center,
+                                        child: Text('현재 수순', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                          color: Colors.purple.shade300,
+                                          margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                          alignment: Alignment.center,
+                                          child: Text(v_downCount.toString(),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 24
+                                              )
+                                          )
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             )
                           ],
@@ -4591,14 +4834,154 @@ class _DatabaseAppState extends State<DatabaseApp> {
                               flex: 1,
                               child: Container(
                                 color: Colors.deepOrangeAccent,
+                                  alignment : Alignment.center,
+                                  child: Text('전적', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                               ),
                             ),
                             Expanded(
                               flex: 3,
                               child: Container(
                                 color: Colors.purple.shade300,
+                                margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                  alignment: Alignment.center,
+                                child: Column(
+                                    children:[
+                                      Expanded(
+                                          flex:1,
+                                          child: Container(
+                                              child:Row(
+                                                  children:[
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.centerRight,
+                                                            margin: EdgeInsets.fromLTRB(4, 4, 0, 4),
+                                                            child: Text(v_win.toString(),
+                                                                style: TextStyle(
+                                                                    color: Colors.white,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 24
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.center,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text('승',
+                                                                style: TextStyle(
+                                                                    color: Colors.green[100],
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 20
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.centerRight,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text(v_tie.toString(),
+                                                                style: TextStyle(
+                                                                    color: Colors.white,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 24
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.center,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text('무',
+                                                                style: TextStyle(
+                                                                    color: Colors.yellow,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 20
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.centerRight,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text(v_defeat.toString(),
+                                                                style: TextStyle(
+                                                                    color: Colors.white,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 24
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.center,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text('패',
+                                                                style: TextStyle(
+                                                                    color: Colors.red,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 20
+                                                                ))
+                                                        )
+                                                    ),
+                                                  ]
+                                              )
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              child: Row(
+                                                  children: [
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Container(),
+
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.center,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text('점수',
+                                                                style: TextStyle(
+                                                                    color: Colors.red,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 20
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                            alignment : Alignment.centerRight,
+                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                                            child: Text(v_score.toString(),
+                                                                style: TextStyle(
+                                                                    color: Colors.white,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    fontSize: 24
+                                                                ))
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Container(),
+
+                                                    ),
+                                                  ]
+                                              )
+                                          )
+                                      )
+                                ]
+                                )
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
