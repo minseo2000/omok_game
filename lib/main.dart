@@ -13,6 +13,8 @@ import 'package:intl/intl.dart';
 
 void main() {
 
+  WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp]
   ); // 세로 화면 고정
@@ -797,10 +799,10 @@ class _DatabaseAppState extends State<DatabaseApp> {
           v_scoreCol = 0;
           v_scoreGrd1 = 0;
           v_scoreGrd2 = 0;
-          step_downStone_attack_row(i, j);
-          step_downStone_attack_col(i, j);
-          step_downStone_attack_grd1(i, j);
-          step_downStone_attack_grd2(i, j);
+          //step_downStone_attack_row(i, j);
+          //step_downStone_attack_col(i, j);
+          //step_downStone_attack_grd1(i, j);
+          //step_downStone_attack_grd2(i, j);
 
           if(v_scoreTop < v_scoreRow + v_scoreCol + v_scoreGrd1 + v_scoreGrd2){
             v_scoreTop = v_scoreRow + v_scoreCol + v_scoreGrd1 + v_scoreGrd2;
