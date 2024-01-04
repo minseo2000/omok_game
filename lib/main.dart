@@ -53,8 +53,7 @@ Future<Database> initDatabase() async{
     join(await getDatabasesPath(), 'omok_database.db'),
     onCreate: (db, version){
       return db.execute(
-        "CREATE TABLE omoks(omokDate TEXT PRIMARY KEY, "
-            "win INTEGER, tie INTEGER, defeat INTEGER, downCount INTEGER, score INTEGER",
+        "CREATE TABLE omoks(omokDate TEXT PRIMARY KEY, win INTEGER, tie INTEGER, defeat INTEGER, downCount INTEGER, score INTEGER)",
       );
     },
     version: 1,
@@ -104,9 +103,15 @@ class _DatabaseAppState extends State<DatabaseApp> {
       setState(() {
 
       });
+      if(v_volume == true) audioPlayer('assets/audio/stone.mp3');
     }else{
+      if(v_volume == true) audioPlayer('assets/audio/error.mp3');
       return;
     }
+
+    step_check();
+    if(v_flagButtonPlay == true) return;
+
     (v_down == 'b') ? v_down = 'w' : v_down = 'b';
     v_x_previous = x;
     v_y_previous = y;
@@ -123,28 +128,138 @@ class _DatabaseAppState extends State<DatabaseApp> {
       setState(() {
 
       });
+      if(v_volume == true) audioPlayer('assets/audio/stone.mp3');
+      step_check();
       (v_down == 'b') ? v_down = 'w' : v_down = 'b';
     });
   }
+
+
+  void step_check(){
+    if(v_downCount < 9) return;
+    step_check_5();
+    if(v_flagButtonPlay == true) return;
+    step_check_downCount();
+  }
+
+  void step_check_5(){
+    step_check_row();
+    if(v_flagButtonPlay == false) step_check_col();
+    if(v_flagButtonPlay == false) step_check_grd1();
+    if(v_flagButtonPlay == false) step_check_grd2();
+    if(v_flagButtonPlay == false) return;
+
+    EasyLoading.instance.fontSize = 24;
+    EasyLoading.instance.displayDuration = const Duration(milliseconds: 2000);
+    EasyLoading.showToast((v_down == v_youStone ? '승리했다냥!' : '졌다냥..'));
+
+    if(v_down == v_youStone){
+      if(v_volume == true) audioPlayer('assets/audio/clap.mp3');
+      v_win++;
+      (v_downCount < 20) ? v_score = v_score + 30 : v_score = v_score + 20;
+    }else{
+      if(v_volume == true) audioPlayer('assets/audio/laugh.mp3');
+      v_defeat++;
+      (v_downCount < 20) ? v_score = v_score - 20: v_score = v_score - 10;
+    }
+    _insert();
+  }
+
+  void step_check_downCount(){
+    if(v_downCount < 120) return;
+    v_flagButtonPlay = true;
+
+    EasyLoading.instance.fontSize = 24;
+    EasyLoading.instance.displayDuration = const Duration(milliseconds: 2000);
+    EasyLoading.showToast('무승부다냥!');
+    if(v_volume == true) audioPlayer('assets/audio/clap.mp3');
+    v_tie++;
+    v_score = v_score +10;
+    _insert();
+  }
+
+  void step_check_row(){
+    for(i=0;i<v_rowBox;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count = 0;
+        for(jj=0;jj<5;jj++){
+          if(v_listBox[i][j+jj] != v_down) break;
+          _v_count++;
+        }
+        if(_v_count == 5){
+          v_flagButtonPlay = true;
+          return;
+        }
+      }
+    }
+  }
+  void step_check_col(){
+    for(j=0;j<v_colBox;j++){
+      for(i=0;i<=v_rowBox-5;i++){
+        int _v_count =0;
+        for(ii=0;ii<5;ii++){
+          if(v_listBox[i+ii][j] != v_down)break;
+          _v_count++;
+        }
+        if(_v_count == 5){
+          v_flagButtonPlay = true;
+          return;
+        }
+      }
+    }
+  }
+
+  void step_check_grd1(){
+    for(i=0;i<=v_rowBox-5;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count =0;
+        for(jj=0;jj<5;jj++){
+          if(v_listBox[i+jj][j+jj] != v_down) break;
+          _v_count++;
+        }
+        if(_v_count == 5){
+          v_flagButtonPlay = true;
+          return;
+        }
+      }
+    }
+  }
+
+  void step_check_grd2(){
+    for(i=4;i<v_rowBox;i++){
+      for(j=0;j<=v_colBox-5;j++){
+        int _v_count = 0;
+        for(jj=0;jj<5;jj++){
+          if(v_listBox[i-jj][j+jj] != v_down) break;
+          _v_count++;
+        }
+        if(_v_count == 5){
+          v_flagButtonPlay = true;
+          return;
+        }
+      }
+    }
+  }
+
 
   void step_downStone_AI(){
     if(v_downCount < 5){
       step_downStone_5downCount();
       if(v_x_AI != 15) return;
     }
-    //step_downStone_AI4();
+    step_downStone_AI4();
     if(v_x_AI != 15) return;
 
-    //step_downStone_YOU4();
+    step_downStone_YOU4();
     if(v_x_AI != 15) return;
 
-    //step_downStone_AI3();
+    step_downStone_AI3();
     if(v_x_AI != 15) return;
 
-    //step_downStone_YOU3();
+    step_downStone_YOU3();
     if(v_x_AI != 15) return;
 
-    //step_downStone_attack();
+    step_downStone_attack();
     if(v_x_AI != 15) return;
   }
 
@@ -161,7 +276,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
   void step_downStone_AI4_row(){
     for(i = 0;i<v_rowBox ;i++){
-      for(j=0;j<=v_colBox ;j++){
+      for(j=0;j<=v_colBox - 5 ;j++){
         int _v_count_n = 0;
         int _v_count_AI = 0;
         int _v_x_AI = 0;
@@ -188,7 +303,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
   }
   void step_downStone_AI4_col(){
     for(j=0;j<v_colBox;j++){
-      for(i=0;i<=v_rowBox;i++){
+      for(i=0;i<=v_rowBox - 5;i++){
         int _v_count_n = 0;
         int _v_count_AI = 0;
         int _v_x_AI = 0;
@@ -214,8 +329,8 @@ class _DatabaseAppState extends State<DatabaseApp> {
     }
   }
   void step_downStone_AI4_grd1(){
-    for(i=0;i<=v_rowBox;i++){
-      for(j=0;j<=v_colBox;j++){
+    for(i=0;i<=v_rowBox-5;i++){
+      for(j=0;j<=v_colBox-5;j++){
         int _v_count_n = 0;
         int _v_count_AI = 0;
         int _v_x_AI = 0;
@@ -240,7 +355,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
     }
   }
   void step_downStone_AI4_grd2(){
-    for(i=4;i<=v_rowBox;i++){
+    for(i=4;i<v_rowBox;i++){
       for(j=0;j<=v_colBox-5;j++){
         int _v_count_n = 0;
         int _v_count_AI = 0;
@@ -358,7 +473,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
     }
   }
   void step_downStone_AI3_grd2(){
-    for(i=3;i<=v_rowBox;i++){
+    for(i=3;i<v_rowBox;i++){
       for(j=0;j<=v_colBox-4;j++){
         int _v_count_n = 0;
         int _v_count_AI = 0;
@@ -385,6 +500,18 @@ class _DatabaseAppState extends State<DatabaseApp> {
   }
 
 
+  void step_end_play(){
+    v_flagButtonPlay = true;
+
+    EasyLoading.instance.fontSize = 24;
+    EasyLoading.instance.displayDuration = const Duration(milliseconds: 2000);
+    EasyLoading.showToast('기권 패다냥!');
+    if(v_volume == true) audioPlayer('assets/audio/laugh.mp3');
+    v_defeat++;
+    (v_downCount < 20) ? v_score = v_score - 10: v_score = v_score -5;
+    setState((){});
+    _insert();
+  }
 
   void step_downStone_YOU4(){
     step_downStone_YOU4_row();
@@ -399,7 +526,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
   void step_downStone_YOU4_row(){
     for(i=0;i< v_rowBox;i++){
-      for(j=0;j<v_colBox;j++){
+      for(j=0;j<=v_colBox-5;j++){
         int _v_count_n = 0;
         int _v_count_YOU = 0;
         int _v_x_AI = 0;
@@ -426,8 +553,8 @@ class _DatabaseAppState extends State<DatabaseApp> {
     }
   }
   void step_downStone_YOU4_col(){
-    for(j=0;j< v_rowBox;j++){
-      for(i=0;i<=v_colBox;i++){
+    for(j=0;j< v_colBox;j++){
+      for(i=0;i<=v_rowBox-5;i++){
         int _v_count_n = 0;
         int _v_count_YOU = 0;
         int _v_x_AI = 0;
@@ -671,7 +798,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
         v_listBox[v_x_AI][v_y_AI] = v_down;
         return;
       }
-
+      }
       if(v_x_previous == 7){
         if(v_y_previous < 8 && v_listBox[v_x_previous][v_y_previous+1] == 'n'){
           v_x_AI = v_x_previous;
@@ -685,8 +812,8 @@ class _DatabaseAppState extends State<DatabaseApp> {
           v_listBox[v_x_AI][v_y_AI] = v_down;
           return;
         }
-
       }
+
       if(v_y_previous == 7){
         if(v_x_previous <8 && v_listBox[v_x_previous+1][v_y_previous] == 'n'){
           v_x_AI = v_x_previous-1;
@@ -701,24 +828,29 @@ class _DatabaseAppState extends State<DatabaseApp> {
           return;
         }
       }
+
       if(v_y_previous < 8 && v_x_previous < 8 && v_listBox[v_x_previous-1][v_y_previous-1] == 'n'){
         v_x_AI = v_x_previous - 1;
         v_y_AI = v_y_previous - 1;
         v_listBox[v_x_AI][v_y_AI] = v_down;
         return;
       }
+
       if(v_y_previous < 8 && v_x_previous > 7 && v_listBox[v_x_previous+1][v_y_previous-1] == 'n'){
         v_x_AI = v_x_previous +1;
         v_y_AI = v_y_previous -1;
         v_listBox[v_x_AI][v_y_AI] = v_down;
         return;
       }
+
       if(v_y_previous > 7 && v_x_previous < 8 && v_listBox[v_x_previous - 1][v_y_previous +1] == 'n'){
         v_x_AI = v_x_previous -1;
         v_y_AI = v_y_previous +1;
         v_listBox[v_x_AI][v_y_AI] = v_down;
         return;
       }
+
+
       if(v_y_previous > 7 && v_x_previous > 7 && v_listBox[v_x_previous+1][v_y_previous+1]=='n'){
         v_x_AI = v_x_previous +1;
         v_y_AI = v_y_previous + 1;
@@ -773,7 +905,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
         v_listBox[v_x_AI][v_y_AI] = v_down;
         return;
       }
-    }
+
   }
 
   void step_initial(){
@@ -799,10 +931,10 @@ class _DatabaseAppState extends State<DatabaseApp> {
           v_scoreCol = 0;
           v_scoreGrd1 = 0;
           v_scoreGrd2 = 0;
-          //step_downStone_attack_row(i, j);
-          //step_downStone_attack_col(i, j);
-          //step_downStone_attack_grd1(i, j);
-          //step_downStone_attack_grd2(i, j);
+          step_downStone_attack_row(i, j);
+          step_downStone_attack_col(i, j);
+          step_downStone_attack_grd1(i, j);
+          step_downStone_attack_grd2(i, j);
 
           if(v_scoreTop < v_scoreRow + v_scoreCol + v_scoreGrd1 + v_scoreGrd2){
             v_scoreTop = v_scoreRow + v_scoreCol + v_scoreGrd1 + v_scoreGrd2;
@@ -816,6 +948,143 @@ class _DatabaseAppState extends State<DatabaseApp> {
     return;
   }
   //p130
+  void step_downStone_attack_row(x, y){
+    if(y ==0){
+      v_scoreRow = v_scoreRow - 5;
+    }else{
+      v_count = 0;
+      for(jj=y-1;jj>=0;jj--){
+        if(v_count == 4) break; else v_count++;
+        if(v_listBox[x][jj] == 'n'){
+          v_scoreRow = v_scoreRow + 1;
+        }else if(v_listBox[x][jj] == v_youStone){
+          v_scoreRow = v_scoreRow - 3;
+          break;
+        }else{
+          v_scoreRow = v_scoreRow + 2 + (5-v_count);
+        }
+      }
+    }
+
+    if( y == v_colBox - 1){
+      v_scoreRow = v_scoreRow - 5;
+    }else{
+      v_count = 0;
+      for(jj=y+1;jj<v_colBox;jj++){
+        if(v_count == 4) break; else v_count++;
+        if(v_listBox[x][jj] == 'n'){
+          v_scoreRow = v_scoreRow +1;
+        }else if(v_listBox[x][jj] == v_youStone){
+          v_scoreRow = v_scoreRow - 3;
+          return;
+        }else{
+          v_scoreRow = v_scoreRow + 2 + (5-v_count);
+        }
+      }
+    }
+  }
+  void step_downStone_attack_col(x, y){
+    if(x ==0){
+      v_scoreCol = v_scoreCol - 5;
+    }else{
+      v_count = 0;
+      for(ii=x-1;ii>=0;ii--){
+        if(v_count == 4) break; else v_count++;
+        if(v_listBox[ii][y] == 'n'){
+          v_scoreCol = v_scoreCol + 1;
+        }else if(v_listBox[ii][y] == v_youStone){
+          v_scoreCol = v_scoreCol - 3;
+          break;
+        }else{
+          v_scoreCol = v_scoreCol + 2 + (5-v_count);
+        }
+      }
+    }
+
+    if( x == v_rowBox - 1){
+      v_scoreCol = v_scoreCol - 5;
+    }else{
+      v_count = 0;
+      for(ii=x+1;ii<v_rowBox;ii++){
+        if(v_count == 4) break; else v_count++;
+        if(v_listBox[ii][y] == 'n'){
+          v_scoreCol = v_scoreCol +1;
+        }else if(v_listBox[ii][y] == v_youStone){
+          v_scoreCol = v_scoreCol - 3;
+          return;
+        }else{
+          v_scoreCol = v_scoreCol + 2 + (5-v_count);
+        }
+      }
+    }
+  }
+
+  void step_downStone_attack_grd1(x, y){
+
+    if(x==0 || y==0){
+      v_scoreGrd1 = v_scoreGrd1 -5;
+    }else{
+      for(v_count = 1;v_count < 5; v_count++){
+        if(x - v_count < 0 || y- v_count < 0) break;
+        if(v_listBox[x-v_count][y - v_count] =='n'){
+          v_scoreGrd1 = v_scoreGrd1 +1;
+        }else if(v_listBox[x-v_count][y-v_count] == v_youStone){
+          v_scoreGrd1 = v_scoreGrd1 -3;
+          break;
+        }else{
+          v_scoreGrd1 = v_scoreGrd1 + 2 + (6 - v_count);
+        }
+      }
+    }
+    if(x==v_rowBox -1 || y == v_colBox -1){
+      v_scoreGrd1 = v_scoreGrd1 -5;
+    }else{
+      for(v_count =1;v_count <5; v_count++){
+        if(x+v_count > v_colBox -1 || y+v_count > v_rowBox -1) break;
+        if(v_listBox[x+v_count][y+v_count] == 'n'){
+          v_scoreGrd1 = v_scoreGrd1 + 1;
+        }else if(v_listBox[x+v_count][y+ v_count] == v_youStone){
+          v_scoreGrd1 = v_scoreGrd1 -3;
+          return;
+        }else{
+          v_scoreGrd1 = v_scoreGrd1 + 2 + (5-v_count);
+        }
+      }
+    }
+  }
+  void step_downStone_attack_grd2(x, y){
+
+    if(x==0 || y + v_count == v_rowBox -1){
+      v_scoreGrd2 = v_scoreGrd2 -5;
+    }else{
+      for(v_count = 1;v_count < 5; v_count++){
+        if(x - v_count < 0 || y + v_count > v_rowBox - 1) break;
+        if(v_listBox[x-v_count][y + v_count] =='n'){
+          v_scoreGrd2 = v_scoreGrd2 +1;
+        }else if(v_listBox[x-v_count][y+v_count] == v_youStone){
+          v_scoreGrd2 = v_scoreGrd2 -3;
+          break;
+        }else{
+          v_scoreGrd2 = v_scoreGrd2 + 2 + (6 - v_count);
+        }
+      }
+    }
+    if(x==v_rowBox -1 || y == 0){
+      v_scoreGrd2 = v_scoreGrd2 -5;
+    }else{
+      for(v_count =1;v_count <5; v_count++){
+        if(x+v_count > v_colBox -1 ||  y - v_count < 0) break;
+        if(v_listBox[x+v_count][y - v_count] == 'n'){
+          v_scoreGrd2 = v_scoreGrd2 + 1;
+        }else if(v_listBox[x+v_count][y - v_count] == v_youStone){
+          v_scoreGrd2 = v_scoreGrd2 -3;
+          return;
+        }else{
+          v_scoreGrd2 = v_scoreGrd2 + 2 + (5-v_count);
+        }
+      }
+    }
+  }
 
 
   void press_play(){
@@ -824,6 +1093,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
     if(v_youStone == 'w'){
       v_listBox[7][7] = 'b';
       v_aiStone = 'b';
+      if(v_volume == true) audioPlayer('assets/audio/stone.mp3');
       v_downCount++;
       v_x_count = 7;
       v_y_count = 7;
@@ -837,6 +1107,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
 
     });
   }
+
 
 
   late int i;
@@ -863,6 +1134,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
   int v_scoreGrd1 = 0;
   int v_scoreGrd2 = 0;
 
+  late String v_today;
 
 
 
@@ -874,6 +1146,21 @@ class _DatabaseAppState extends State<DatabaseApp> {
   int v_tie = 0;
   int v_defeat = 0;
   int v_score = 0;
+
+  void _insert() async{
+    final Database database = await widget.db;
+    if(v_win + v_tie + v_defeat == 1){
+      String _today = DateFormat('yyyy-mm-dd hh:mm:ss').format(DateTime.now());
+      v_today = _today;
+      await database.rawUpdate(
+        "insert into omoks(omokDate, win, tie, defeat, downCount, score) values('$_today', $v_win, $v_tie, $v_defeat, $v_downCount, $v_score)");
+    }else{
+      String _today = v_today;
+      await database.rawUpdate(
+        "update omoks set win = $v_win, tie = $v_tie, defeat = $v_defeat, downCount = $v_downCount, score = $v_score where omokDate = '$_today'"
+      );
+    }
+  }
 
   @override
   void dispose(){
@@ -5424,7 +5711,35 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                       minimumSize : Size.infinite,
                                       foregroundColor: Colors.black, backgroundColor: Colors.blue
                                   ),
-                                  onPressed: (){},
+                                  onPressed: ()async{
+                                    if(v_flagButtonPlay == false){
+                                      await showDialog(context: context, builder: (context){
+                                        return AlertDialog(
+                                          title: Text('Alert', style: TextStyle(color: Colors.pink, fontSize: 15),),
+                                          content: Text('기권하시겠습니까?'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: (){
+                                                step_end_play();
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: const Text('기권')
+                                            ),
+                                            TextButton(
+                                                onPressed: (){
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text('아니오')
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                    }else{
+                                      EasyLoading.instance.fontSize = 16;
+                                      EasyLoading.instance.displayDuration = const Duration(milliseconds: 500);
+                                      EasyLoading.showToast('게임 중이 아니다냥!');
+                                    }
+                                  },
                                 )
                               ),
                             ),
