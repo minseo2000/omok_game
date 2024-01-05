@@ -19,3 +19,9 @@ You can play here!
 -- p130 update
 -- update assets
 
+
+## contacts
+if you find some bugs contact to me!
+
+- email : qlqlxks123@naver.com
+
