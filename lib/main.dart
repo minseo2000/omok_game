@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:omok/screen/omokList.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -10,10 +11,14 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
+import 'bannerAdWidget.dart';
+
 
 void main() {
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  MobileAds.instance.initialize();
 
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp]
@@ -27,12 +32,12 @@ void main() {
       builder: EasyLoading.init(),
       title: 'Cat Mok',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
         '/omokList' : (context) => OmokList(db: database,)
       },
+      debugShowCheckedModeBanner: false,
     )
   );
 
@@ -103,9 +108,9 @@ class _DatabaseAppState extends State<DatabaseApp> {
       setState(() {
 
       });
-      if(v_volume == true) audioPlayer('assets/audio/stone.mp3');
+      if(v_volume == true) audioPlayer('assets/audios/stone.mp3');
     }else{
-      if(v_volume == true) audioPlayer('assets/audio/error.mp3');
+      if(v_volume == true) audioPlayer('assets/audios/error.mp3');
       return;
     }
 
@@ -128,7 +133,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
       setState(() {
 
       });
-      if(v_volume == true) audioPlayer('assets/audio/stone.mp3');
+      if(v_volume == true) audioPlayer('assets/audios/stone.mp3');
       step_check();
       (v_down == 'b') ? v_down = 'w' : v_down = 'b';
     });
@@ -154,11 +159,11 @@ class _DatabaseAppState extends State<DatabaseApp> {
     EasyLoading.showToast((v_down == v_youStone ? '승리했다냥!' : '졌다냥..'));
 
     if(v_down == v_youStone){
-      if(v_volume == true) audioPlayer('assets/audio/clap.mp3');
+      if(v_volume == true) audioPlayer('assets/audios/clap.mp3');
       v_win++;
       (v_downCount < 20) ? v_score = v_score + 30 : v_score = v_score + 20;
     }else{
-      if(v_volume == true) audioPlayer('assets/audio/laugh.mp3');
+      if(v_volume == true) audioPlayer('assets/audios/laugh.mp3');
       v_defeat++;
       (v_downCount < 20) ? v_score = v_score - 20: v_score = v_score - 10;
     }
@@ -172,7 +177,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
     EasyLoading.instance.fontSize = 24;
     EasyLoading.instance.displayDuration = const Duration(milliseconds: 2000);
     EasyLoading.showToast('무승부다냥!');
-    if(v_volume == true) audioPlayer('assets/audio/clap.mp3');
+    if(v_volume == true) audioPlayer('assets/audios/clap.mp3');
     v_tie++;
     v_score = v_score +10;
     _insert();
@@ -506,7 +511,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
     EasyLoading.instance.fontSize = 24;
     EasyLoading.instance.displayDuration = const Duration(milliseconds: 2000);
     EasyLoading.showToast('기권 패다냥!');
-    if(v_volume == true) audioPlayer('assets/audio/laugh.mp3');
+    if(v_volume == true) audioPlayer('assets/audios/laugh.mp3');
     v_defeat++;
     (v_downCount < 20) ? v_score = v_score - 10: v_score = v_score -5;
     setState((){});
@@ -1093,7 +1098,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
     if(v_youStone == 'w'){
       v_listBox[7][7] = 'b';
       v_aiStone = 'b';
-      if(v_volume == true) audioPlayer('assets/audio/stone.mp3');
+      if(v_volume == true) audioPlayer('assets/audios/stone.mp3');
       v_downCount++;
       v_x_count = 7;
       v_y_count = 7;
@@ -1244,6 +1249,175 @@ class _DatabaseAppState extends State<DatabaseApp> {
       body: Container(
         child: Column(
           children: [
+            Expanded(
+                flex:1,
+child: Container(
+  child: Column(
+      children:
+  [
+    Expanded(
+      flex: 1,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/cat8.png'),fit: BoxFit.fitWidth
+          )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                  alignment: Alignment.center,
+                  child: Column(
+                      children:[
+                        Expanded(
+                            flex:1,
+                            child: Container(
+                                child:Row(
+                                    children:[
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.centerRight,
+                                              margin: EdgeInsets.fromLTRB(4, 4, 0, 4),
+                                              child: Text(v_win.toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 24
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.center,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text('승',
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 20
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.centerRight,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text(v_tie.toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 24
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.center,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text('무',
+                                                  style: TextStyle(
+                                                      color: Colors.yellow,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 20
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.centerRight,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text(v_defeat.toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 24
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.center,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text('패',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 20
+                                                  ))
+                                          )
+                                      ),
+                                    ]
+                                )
+                            )
+                        ),
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                                child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(),
+
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.center,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text('점수',
+                                                  style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 20
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              alignment : Alignment.centerRight,
+                                              margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                              child: Text(v_score.toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 24
+                                                  ))
+                                          )
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(),
+
+                                      ),
+                                    ]
+                                )
+                            )
+                        )
+                      ]
+                  )
+              ),
+            ),
+          ],
+        ),
+      ),
+    )
+  ]
+  )
+)
+            ),
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
@@ -1251,7 +1425,6 @@ class _DatabaseAppState extends State<DatabaseApp> {
                 Container(
                   width: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
                   height: (MediaQuery.of(context).size.width > MediaQuery.of(context).size.height - 300 ? MediaQuery.of(context).size.height -300 : MediaQuery.of(context).size.width),
-                  color: Colors.yellow,
                   child: Image.asset('assets/images/omok_bg.png', fit: BoxFit.contain,),
                 ),
                 //15 *15 바둑돌 이미지
@@ -5616,13 +5789,16 @@ class _DatabaseAppState extends State<DatabaseApp> {
             Expanded(
               flex: 1,
               child: Container(
-                color: Colors.blue,
                 child: Column(
                   children: [
                     Expanded(
                       flex: 1,
                       child: Container(
-                        color: Colors.black12,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/cat8.png'),fit: BoxFit.fitWidth
+                            )
+                        ),
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: Row(
                           children: [
@@ -5630,7 +5806,6 @@ class _DatabaseAppState extends State<DatabaseApp> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                color: Colors.red,
                                 child: Column(
                                     children:[
                                       Expanded(
@@ -5648,7 +5823,7 @@ class _DatabaseAppState extends State<DatabaseApp> {
                                       Expanded(
                                         flex: 1,
                                         child: Container(
-                                            color: Colors.pink,
+                                          
                                             child: Container(
                                                 margin : EdgeInsets.fromLTRB(0, 5, 0, 0),
                                                 alignment: Alignment.center,
@@ -5665,13 +5840,13 @@ class _DatabaseAppState extends State<DatabaseApp> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                color: Colors.yellow,
+                                  color: Colors.white54,
                                 margin : EdgeInsets.fromLTRB(5, 0, 0, 0),
                                   child : TextButton(
                                       child: Text('게임\n시작', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
                                       style: TextButton.styleFrom(
                                           minimumSize : Size.infinite,
-                                          foregroundColor: Colors.black, backgroundColor: Colors.blue
+
                                       ),
                                   onPressed: ()async{
                                         if(v_flagButtonPlay == true){
@@ -5704,12 +5879,11 @@ class _DatabaseAppState extends State<DatabaseApp> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                color: Colors.green,
+                                  color: Colors.white54,
                                 child: TextButton(
                                   child: Text('기권', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
                                   style: TextButton.styleFrom(
                                       minimumSize : Size.infinite,
-                                      foregroundColor: Colors.black, backgroundColor: Colors.blue
                                   ),
                                   onPressed: ()async{
                                     if(v_flagButtonPlay == false){
@@ -5746,202 +5920,41 @@ class _DatabaseAppState extends State<DatabaseApp> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                color: Colors.blue,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                        color: Colors.deepOrangeAccent,
-                                        alignment : Alignment.center,
-                                        child: Text('현재 수순', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 3,
-                                      child: Container(
-                                          color: Colors.purple.shade300,
-                                          margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                          alignment: Alignment.center,
-                                          child: Text(v_downCount.toString(),
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 24
+                                  child: Column(
+                                      children:[
+                                        Expanded(
+                                            flex: 1,
+                                            child: Container(
+                                              child: Text(
+                                                'AI',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16
+                                                ),
+                                              ),
+                                            )
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(
+
+                                              child: Container(
+                                                  margin : EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                                  alignment: Alignment.center,
+                                                  child: Image.asset(
+                                                      'assets/images/${v_aiStone}.png'
+                                                  )
                                               )
-                                          )
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                          ),
+                                        ),
+                                      ]
+                                  )
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        color: Colors.blue,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                color: Colors.deepOrangeAccent,
-                                  alignment : Alignment.center,
-                                  child: Text('전적', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                color: Colors.purple.shade300,
-                                margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  alignment: Alignment.center,
-                                child: Column(
-                                    children:[
-                                      Expanded(
-                                          flex:1,
-                                          child: Container(
-                                              child:Row(
-                                                  children:[
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.centerRight,
-                                                            margin: EdgeInsets.fromLTRB(4, 4, 0, 4),
-                                                            child: Text(v_win.toString(),
-                                                                style: TextStyle(
-                                                                    color: Colors.white,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 24
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.center,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text('승',
-                                                                style: TextStyle(
-                                                                    color: Colors.green[100],
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 20
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.centerRight,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text(v_tie.toString(),
-                                                                style: TextStyle(
-                                                                    color: Colors.white,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 24
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.center,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text('무',
-                                                                style: TextStyle(
-                                                                    color: Colors.yellow,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 20
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.centerRight,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text(v_defeat.toString(),
-                                                                style: TextStyle(
-                                                                    color: Colors.white,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 24
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.center,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text('패',
-                                                                style: TextStyle(
-                                                                    color: Colors.red,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 20
-                                                                ))
-                                                        )
-                                                    ),
-                                                  ]
-                                              )
-                                          )
-                                      ),
-                                      Expanded(
-                                          flex: 1,
-                                          child: Container(
-                                              child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Container(),
-
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.center,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text('점수',
-                                                                style: TextStyle(
-                                                                    color: Colors.red,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 20
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                            alignment : Alignment.centerRight,
-                                                            margin: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                                            child: Text(v_score.toString(),
-                                                                style: TextStyle(
-                                                                    color: Colors.white,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    fontSize: 24
-                                                                ))
-                                                        )
-                                                    ),
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Container(),
-
-                                                    ),
-                                                  ]
-                                              )
-                                          )
-                                      )
-                                ]
-                                )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -5950,7 +5963,8 @@ class _DatabaseAppState extends State<DatabaseApp> {
         ),
       ),
       bottomNavigationBar: Container(
-        height: 63,
+        height: 75,
+        child: BannerAdWidget()
       ),
     );
   }

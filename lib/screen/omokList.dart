@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:omok/omok.dart';
 import 'package:sqflite/sqflite.dart';
@@ -21,9 +23,18 @@ class _OmokListState extends State<OmokList> {
   void initState(){
     super.initState();
     OmokList = getOmokList() as Future<List<Omok>>?;
-
+    backGroundIndex = Random().nextInt(2);
   }
-
+  List<String> backgroudImage = [
+    'assets/images/cat1.png',
+    'assets/images/cat2.png',
+    'assets/images/cat3.png',
+    'assets/images/cat4.png',
+    'assets/images/cat5.png',
+    'assets/images/cat6.png',
+    'assets/images/cat7.png',
+  ];
+  int backGroundIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +43,11 @@ class _OmokListState extends State<OmokList> {
         title: const Text('냥목')
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(backgroudImage[backGroundIndex])
+          )
+        ),
         child: Center(
           child: FutureBuilder(
             builder: (context, snapshot){

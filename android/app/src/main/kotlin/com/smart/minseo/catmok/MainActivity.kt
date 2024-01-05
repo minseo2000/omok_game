@@ -1,4 +1,4 @@
-package com.smart.minseo.omok
+package com.smart.minseo.catmok
 
 import io.flutter.embedding.android.FlutterActivity
 
